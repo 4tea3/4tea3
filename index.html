@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Thảo | Multimedia Portfolio</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-deep: #2b0505;
+            --accent-gold: #ffcc00;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. Hiệu ứng Tuyết rơi */
+        .thao-snow-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+        .snow-particle { position: absolute; background: white; border-radius: 50%; opacity: 0.3; animation: snowMove linear infinite; }
+        @keyframes snowMove { 
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0.5; } 
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } 
+        }
+
+        /* 2. Bố cục chính (Sidebar + Content) */
+        .main-container { display: flex; flex-wrap: wrap; min-height: 100vh; }
+
+        /* Sidebar */
+        aside {
+            flex: 1;
+            min-width: 280px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            padding: 50px 30px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .nav-links { display: flex; flex-direction: column; gap: 15px; margin-top: 40px; }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: 0.4s;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+        }
+        .nav-links a:hover {
+            background: rgba(255,204,0,0.1);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateX(10px);
+        }
+
+        /* Nội dung chính */
+        main { flex: 3; min-width: 350px; padding: 0 5%; z-index: 2; }
+
+        /* 3. Hiệu ứng Reveal & Kính */
+        .reveal-section { opacity: 0; transform: translateY(40px); animation: revealEffect 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+        @keyframes revealEffect { to { opacity: 1; transform: translateY(0); } }
+
+        .thao-glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+        }
+        .thao-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* 4. Timeline */
+        .timeline-line { border-left: 2px solid var(--accent-gold); padding-left: 30px; position: relative; margin-left: 10px; }
+        .timeline-star { position: absolute; left: -12px; top: 0; color: var(--accent-gold); font-size: 20px; }
+
+        /* Typography & Components */
+        .hero-title { font-family: 'Playfair Display', serif; font-size: calc(2.5rem + 4vw); line-height: 1; margin-bottom: 20px; }
+        .accent-text { color: var(--accent-gold); font-weight: 700; letter-spacing: 2px; }
+        
+        .skill-tag {
+            padding: 10px 20px;
+            background: rgba(255,204,0,0.05);
+            border: 1px solid var(--accent-gold);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .skill-tag:hover { background: var(--accent-gold); color: #000; }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: #000;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255,204,0,0.3); }
+
+        @media (max-width: 768px) {
+            aside { position: relative; height: auto; width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            main { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="thao-snow-wrap">
+        <div class="snow-particle" style="width:5px; height:5px; left:15%; animation-duration:10s;"></div>
+        <div class="snow-particle" style="width:3px; height:3px; left:35%; animation-duration:15s; animation-delay:2s;"></div>
+        <div class="snow-particle" style="width:6px; height:6px; left:55%; animation-duration:12s; animation-delay:4s;"></div>
+        <div class="snow-particle" style="width:4px; height:4px; left:75%; animation-duration:18s;"></div>
+        <div class="snow-particle" style="width:2px; height:2px; left:90%; animation-duration:14s; animation-delay:1s;"></div>
+    </div>
+
+    <div class="main-container">
+        <aside>
+            <div>
+                <h2 style="font-family: 'Playfair Display', serif; color: var(--accent-gold); font-size: 1.8rem; letter-spacing: 2px;">THANH THẢO.</h2>
+                <nav class="nav-links">
+                    <a href="#home">🏠 Trang chủ</a>
+                    <a href="#about">📜 Về em</a>
+                    <a href="#experience">💼 Kinh nghiệm</a>
+                    <a href="#projects">🎨 Dự án & Kỹ năng</a>
+                    <a href="#contact">📞 Liên hệ</a>
+                </nav>
+            </div>
+
+            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
+                <p style="font-size: 0.75rem; opacity: 0.6; margin-bottom: 15px; letter-spacing: 1px;">KẾT NỐI VỚI EM</p>
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                    <a href="#" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">FB</a>
+                    <a href="#" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">IG</a>
+                    <a href="#" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">BE</a>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section id="home" class="reveal-section" style="height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+                <p class="accent-text" style="font-size: 1rem;">CREATIVE PORTFOLIO 2026</p>
+                <h1 class="hero-title">TRAN THI<br><span style="color: var(--accent-gold);">THANH THAO</span></h1>
+                <p style="font-size: 1.2rem; opacity: 0.8; font-weight: 300; max-width: 600px;">
+                    Multimedia Communications | Event Operation Specialist.
+                    Giao thoa giữa tư duy chiến lược và thẩm mỹ "New-tro".
+                </p>
+                <div style="margin-top: 40px;">
+                    <a href="#about" class="btn-primary">Khám phá ngay</a>
+                </div>
+            </section>
+
+            <section id="about" class="reveal-section" style="padding: 100px 0;">
+                <div class="thao-glass" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+                    <div style="flex: 1; min-width: 280px; position: relative;">
+                        <img src="https://via.placeholder.com/400x500" alt="Portrait" style="width: 100%; border-radius: 15px; filter: grayscale(20%);">
+                        <div style="position: absolute; bottom: 20px; left: -10px; background: var(--accent-gold); color: #000; padding: 12px 20px; font-weight: 900; border-radius: 4px; font-size: 0.8rem;">STU. VAN HIEN UNIV</div>
+                    </div>
+                    <div style="flex: 1.5; min-width: 300px;">
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-gold);">Xin chào!</h2>
+                        <p style="line-height: 1.8; opacity: 0.9; margin-bottom: 20px;">
+                            Em là sinh viên năm 3 chuyên ngành Multimedia tại ĐH Văn Hiến. Với kinh nghiệm trực chiến điều phối <b>20+ sự kiện Big Show</b>, em tin rằng sự sáng tạo bay bổng nhất cũng cần một nền tảng thực thi vững chắc. 
+                        </p>
+                        <p style="line-height: 1.8; opacity: 0.9;">
+                            Phong cách của em theo đuổi là <b>"New-tro"</b> – sự kết hợp giữa nét cổ điển bền vững và công nghệ đa phương tiện hiện đại.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="reveal-section" style="padding: 100px 0;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 50px; text-align: center;">Hành trình thực chiến</h2>
+                <div class="timeline-line" style="max-width: 800px; margin: 0 auto;">
+                    <div class="thao-glass" style="margin-bottom: 40px; position: relative;">
+                        <span class="timeline-star">★</span>
+                        <p class="accent-text" style="font-size: 0.8rem; margin-bottom: 10px;">10/2024 - NAY</p>
+                        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Event Operator | Big Show Operations</h3>
+                        <p style="opacity: 0.8; font-size: 0.9rem;">Điều phối hiện trường tại: Anh Trai Vượt Ngàn Chông Gai, Kpop Super Concert. Quản lý luồng khán giả 20.000+ người.</p>
+                    </div>
+                    <div class="thao-glass" style="margin-bottom: 40px; position: relative;">
+                        <span class="timeline-star">★</span>
+                        <p class="accent-text" style="font-size: 0.8rem; margin-bottom: 10px;">06/2024 - 09/2024</p>
+                        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 10px;">Content Marketing & Design | Green Voices</h3>
+                        <p style="opacity: 0.8; font-size: 0.9rem;">Thiết kế bộ nhận diện campaign social, quản trị Fanpage và sản xuất video viral đạt tương tác cao.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="reveal-section" style="padding: 100px 0;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; text-align: center; margin-bottom: 50px;">Kỹ năng & Chuyên môn</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                    <div class="thao-glass" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">🎨</div>
+                        <h3 style="color: var(--accent-gold); margin-bottom: 15px;">Visual Design</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">Adobe Photoshop, Illustrator, Premiere. Tư duy thiết kế "New-tro".</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                            <span class="skill-tag">Branding</span> <span class="skill-tag">Editing</span>
+                        </div>
+                    </div>
+                    <div class="thao-glass" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📊</div>
+                        <h3 style="color: var(--accent-gold); margin-bottom: 15px;">Market Research</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">Nghiên cứu tâm lý học FOMO của Gen Z. Chuyển hóa data thành chiến lược.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                            <span class="skill-tag">Analysis</span> <span class="skill-tag">Psychology</span>
+                        </div>
+                    </div>
+                    <div class="thao-glass" style="text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📦</div>
+                        <h3 style="color: var(--accent-gold); margin-bottom: 15px;">3D Modeling</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">Sử dụng Blender dựng Product Mockup và Stage Design cơ bản.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                            <span class="skill-tag">Blender</span> <span class="skill-tag">Mockup</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="contact" class="reveal-section" style="padding: 120px 0 60px; text-align: center;">
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--accent-gold); margin-bottom: 40px;">
+                    "Work non-stop, forget time and love with your heart."
+                </p>
+                <div class="thao-glass" style="max-width: 600px; margin: 0 auto 60px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 30px;">
+                    <div style="text-align: left;">
+                        <h4 class="accent-text" style="font-size: 0.8rem; margin-bottom: 10px;">THÔNG TIN LIÊN HỆ</h4>
+                        <p style="margin: 5px 0;">📧 tthao303205@gmail.com</p>
+                        <p style="margin: 5px 0;">📞 0358 088 316</p>
+                    </div>
+                    <div style="background: #fff; padding: 10px; border-radius: 12px; width: 120px; height: 120px;">
+                        <img src="https://via.placeholder.com/100" alt="QR" style="width: 100%;">
+                    </div>
+                </div>
+                
+                <a href="mailto:tthao303205@gmail.com" class="btn-primary">Hợp tác cùng em</a>
+                
+                <h1 style="font-family: 'Playfair Display', serif; font-size: calc(3rem + 6vw); color: rgba(255,255,255,0.03); margin-top: 80px;">THANK YOU</h1>
+                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 20px;">© 2026 Trần Thị Thanh Thảo | Multimedia Portfolio</p>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
